@@ -91,32 +91,34 @@
             </div>
         </div> -->
         <!-- <div class="space-50"></div> -->
+        <input  type="file" (change)="onFileSelected($event)"/>
+        <button (click)="onUpload()" > Upload to S3 </button>  
         <div id="images">
             <!-- <h4>Images</h4> -->
             <div class="row">
                 <div class="col-sm-4">
                     <p class="category">Image</p>
-                    <img src="assets/img/kitchen1.JPG" alt="Rounded Image" class="rounded">
+                    <img src="assets/img/kitchen1.JPG" (click)="showDetails('kitchen1.JPG')" alt="Rounded Image" class="rounded">
                 </div>
                 <div class="col-sm-4">
                     <p class="category">Image</p>
-                    <img src="assets/img/kitchen2.JPG" alt="Rounded Image" class="rounded">
+                    <img src="assets/img/kitchen2.JPG" (click)="showDetails('kitchen2.JPG')" alt="Rounded Image" class="rounded">
                 </div>
                 <div class="col-sm-4">
                     <p class="category">Image</p>
-                    <img src="assets/img/kitchen3.JPG" alt="Rounded Image" class="rounded">
+                    <img src="assets/img/kitchen3.JPG" (click)="showDetails('kitchen3.JPG')" alt="Rounded Image" class="rounded">
                 </div>
                 <div class="col-sm-4">
                     <p class="category">Image</p>
-                    <img src="assets/img/kitchen4.JPG" alt="Rounded Image" class="rounded">
+                    <img src="assets/img/kitchen4.JPG" (click)="showDetails('kitchen4.JPG')" alt="Rounded Image" class="rounded">
                 </div>
                 <div class="col-sm-4">
                     <p class="category">Image</p>
-                    <img src="assets/img/kitchen5.JPG" alt="Rounded Image" class="rounded">
+                    <img src="assets/img/kitchen5.JPG" (click)="showDetails('kitchen5.JPG')" alt="Rounded Image" class="rounded">
                 </div>
                 <div class="col-sm-4">
                     <p class="category">Image</p>
-                    <img src="assets/img/kitchen6.JPG" alt="Rounded Image" class="rounded">
+                    <img src="assets/img/kitchen6.JPG" (click)="showDetails('kitchen6.JPG')" alt="Rounded Image" class="rounded">
                 </div>
             </div>
         </div>
