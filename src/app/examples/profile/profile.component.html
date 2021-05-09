@@ -30,6 +30,7 @@
             <div class="col-3" *ngFor="let images of allImages;">
                 <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+images.fileName"  width= 200px; height= 200px;>
                 <button (click)="showForm(images)" *ngIf="!isEditable">Edit</button>
+                <button (click)="deleteFile(images)" *ngIf="!isEditable">Delete</button>
             </div>
         </div>
 

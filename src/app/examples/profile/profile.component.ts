@@ -199,4 +199,8 @@ export class ProfileComponent implements OnInit {
     //code for editing
 
   }
+  async deleteFile(imageDetails){
+     await this.http.post("https://cosmo-thoughts.herokuapp.com/api/auth/userlist/deleteimage", {id:imageDetails._id}).toPromise();
+     this.getAllImages();
+    }
 }
