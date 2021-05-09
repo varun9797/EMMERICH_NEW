@@ -7,109 +7,97 @@
                 <div class="photo-container">
                     <img src="assets/img/ryan.jpg" alt="">
                 </div>
-                <h3 class="title">Ryan Scheinder</h3>
-                <p class="category">Photographer</p>
+                <h3 class="title">Jatin Sharma</h3>
+                <!-- <p class="category">Photographer</p> -->
                 <div class="content">
                     <div class="social-description">
-                        <h2>26</h2>
-                        <p>Comments</p>
                     </div>
                     <div class="social-description">
-                        <h2>26</h2>
-                        <p>Comments</p>
+                         
                     </div>
-                    <div class="social-description">
+                    <!-- <div class="social-description">
                         <h2>48</h2>
                         <p>Bookmarks</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
+    <button (click)="addNew()" *ngIf="!isEditable">Add New</button>
+
     <div class="section">
-        <div class="container">
-          <div class="button-container">
-              <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Instagram">
-                <i class="fab fa-instagram"></i>
-              </a>
-          </div>
-          <h3 class="title">About me</h3>
-          <h5 class="description">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</h5>
-            <div class="row">
-                <div class="col-md-12">
-                    <h4 class="title text-center">My Portfolio</h4>
-                      <ngb-tabset [justify]="'center'" type="pills" class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
-                          <ngb-tab>
-                            <ng-template ngbTabTitle>
-                              <i class="now-ui-icons design_image"></i>
-                            </ng-template>
-                              <ng-template ngbTabContent>
-                                <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg1.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                              </ng-template>
-                          </ngb-tab>
-                          <ngb-tab>
-                            <ng-template ngbTabTitle>
-                              <i class="now-ui-icons location_world"></i>
-                            </ng-template>
-                              <ng-template ngbTabContent>
-                                <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg6.jpg" class="img-raised">
-                                              <img src="assets/img/bg11.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                              </ng-template>
-                          </ngb-tab>
-                          <ngb-tab>
-                            <ng-template ngbTabTitle>
-                              <i class="now-ui-icons sport_user-run"></i>
-                            </ng-template>
-                              <ng-template ngbTabContent>
-                                <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg6.jpg" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                              </ng-template>
-                          </ngb-tab>
-                      </ngb-tabset>
-                </div>
+        <div *ngIf="!isEditable" class="row">
+            <div class="col-3" *ngFor="let images of allImages;">
+                <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+images.fileName"  width= 200px; height= 200px;>
+                <button (click)="showForm(images)" *ngIf="!isEditable">Edit</button>
             </div>
         </div>
+
+        <div *ngIf="isEditable" class="container">
+            <button (click)="isEditable=!isEditable" *ngIf="isEditable">Back</button>
+            <label for="fname">name:</label>
+            <input type="text"  [(ngModel)]="name" ><br>
+            <!-- <label for="lname">type:</label>
+            <input type="text" [(ngModel)]="type" > -->
+            <label for="lname">description:</label>
+            <textarea type="text" [(ngModel)]="description" ></textarea>><br>
+
+            <label for="lname">size:</label>
+            <input type="text"  [(ngModel)]="size" >
+            <label for="lname">suction:</label>
+            <input type="text" [(ngModel)]="suction" ><br>
+
+            <label for="lname">height:</label>
+            <input type="text" [(ngModel)]="height" ><br>
+            <label for="lname">color:</label>
+            <input type="text"  [(ngModel)]="color" ><br>
+
+            <label for="lname">housing:</label>
+            <input type="text" [(ngModel)]="housing" ><br>
+            <!-- <label for="lname">filter:</label>
+            <input type="text" [(ngModel)]="filter" > -->
+
+
+            <label for="lname">switch:</label>
+            <input type="text" [(ngModel)]="switch" ><br>
+
+            <label for="lname">filter:</label>
+            <input type="text" [(ngModel)]="filter" ><br>
+
+            <label for="lname">light:</label>
+            <input type="text" [(ngModel)]="light" ><br>
+
+            <label for="lname">finish:</label>
+            <input type="text" [(ngModel)]="finish" ><br>
+
+            <!-- <label for="lname">switch:</label>
+            <input type="text" [(ngModel)]="switch" > -->
+
+            <label for="lname">motorpower:</label>
+            <input type="text"  [(ngModel)]="motorpower" ><br>
+            <label for="lname">productdimension:</label>
+            <input type="text" [(ngModel)]="productdimension" ><br>
+
+            <label for="lname">warranty:</label>
+            <input type="text" [(ngModel)]="warranty" ><br>
+            <label for="lname">company:</label>
+            <input type="text" [(ngModel)]="company" ><br>
+
+            <label for="lname">Main File Name:</label>
+            <input  type="file" (change)="onFileSelected($event, i)"/>
+            <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+allImages?.selectedFile?.name"  width= 200px; height= 200px;>
+            <br>
+
+            <label for="lname">Other File Name 1:</label>
+            <input  type="file" (change)="onOtherFileSelected($event, 0)"/>
+            <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+otherImages[0]?.selectedFile?.name"  width= 200px; height= 200px;>
+            <br>
+            <label for="lname">Other File Name 2:</label>
+            <input  type="file" (change)="onOtherFileSelected($event, 1)"/>
+            <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+otherImages[1]?.selectedFile?.name"  width= 200px; height= 200px;>
+            <br>
+            <button (click)=onUpload(i) *ngIf="isEditable">Save</button>
+        </div> 
     </div>
     <footer class="footer footer-default">
         <div class="container">

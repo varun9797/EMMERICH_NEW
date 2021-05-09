@@ -3,12 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 
+
+
 @Component({
     selector: 'app-typography',
     templateUrl: './typography.component.html',
     styleUrls: ['./typography.component.scss']
 })
 export class TypographyComponent implements OnInit {
+  allImages: any;
 
 
   ngOnInit() {
@@ -22,14 +25,14 @@ export class TypographyComponent implements OnInit {
     this.selectedFile = <File> event.target.files[0]; 
   }
 
-  getAllS3Files(){
-    
+  async getAllS3Files(){
+    this.allImages = await this.http.get('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getImages').toPromise();  
   }
  
   async onUpload() {   
     console.log('1. SelectedFile: ', this.selectedFile); 
     const body = { fileName: this.selectedFile.name, type: this.selectedFile.type}
-    let preSignedUrlBody:any = await this.http.post('http://localhost:5000/api/auth/userlist/getPresignedUrl', body).toPromise();  
+    let preSignedUrlBody:any = await this.http.post('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getPresignedUrl', body).toPromise();  
     console.log('2. PreSignedURL: ', preSignedUrlBody.preSignedUrl)
     console.log('3. Upoloading File (binary) to S3')
 

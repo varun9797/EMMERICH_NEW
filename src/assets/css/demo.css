@@ -334,6 +334,11 @@
 
 #javascriptComponents {
     padding-bottom: 0;
+    background-color: white;
+}
+#javascriptComponentsLandingPage {
+    padding-bottom: 0;
+    background-color: white;
 }
 
 

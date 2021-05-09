@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ExamplesComponent } from './examples.component';
 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -26,7 +27,8 @@ import { ExamplesComponent } from './examples.component';
         LandingComponent,
         LoginComponent,
         ExamplesComponent,
-        ProfileComponent
-    ]
+        ProfileComponent,
+        
+    ],
 })
 export class ExamplesModule { }
