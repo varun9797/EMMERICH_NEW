@@ -1,10 +1,26 @@
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
+    /* this is the same as grid-template-rows: 300px 300px; */
+    // grid-template-rows: repeat(2, 300px);
     background-color: #ffffff;
     padding: 10px;
     top: 30px;
   }
+
+  @media only screen and (max-width: 600px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        /* this is the same as grid-template-rows: 300px 300px; */
+        // grid-template-rows: repeat(2, 300px);
+        background-color: #ffffff;
+        padding: 10px;
+        top: 30px;
+      }
+  }
+
+
 
   
   .grid-item {

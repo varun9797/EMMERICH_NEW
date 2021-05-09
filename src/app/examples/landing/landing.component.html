@@ -6,25 +6,36 @@
             <div class="content-center">
                 <div class="page">
                     <div class="carousel-and-buttons">
-                        <button *ngIf="this.imageDetails?.specification?.otherImages?.length>=2" (click)="left()" [disabled]="!enableCarouselButtons">&lt;</button>
-                        <div style="margin: 1px;"></div>
+                          
+
+                        
+
+                        <button style="opacity: 0.9;" *ngIf="this.imageDetails?.specification?.otherImages?.length>=2" (click)="left()" [disabled]="!enableCarouselButtons">  <i class="fa fa-arrow-left"></i></button>
+                        <!-- <div style="margin: 1px;"></div> -->
                     <div class="carousel">
                         <div  #carouselItem>
-                            <img class="avatar-img" style="max-height: 500px; max-width: 500px;" [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.fileName"/>
+                            <img class="avatar-img" [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.fileName"/>
                           </div>
                       <div [hidden]="!imageDetails?.specification?.otherImages[0]" #carouselItem>
-                        <img class="avatar-img" style="max-height: 500px; max-width: 500px;"  [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.specification?.otherImages[0]?.fileName"/>
+                        <img class="avatar-img"  [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.specification?.otherImages[0]?.fileName"/>
                       </div>
                      
                       <div [hidden]="!imageDetails?.specification?.otherImages[1]" #carouselItem>
-                        <img class="avatar-img" style="max-height: 500px; max-width: 500px;"  [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.specification?.otherImages[1]?.fileName"/>
+                        <img class="avatar-img"  [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.specification?.otherImages[1]?.fileName"/>
                       </div>
         
                     </div>
-                    <div style="margin: 10px;"></div>
-                    <button *ngIf="this.imageDetails?.specification?.otherImages?.length>=2" [disabled]="!enableCarouselButtons" (click)="right()">&gt;</button>
-                </div>
-                {{currentAvatarIndex}}                 
+                    
+                    
+                    <!-- <div style="margin: 10px;"></div> -->
+                    <button style="opacity: 0.9;" *ngIf="this.imageDetails?.specification?.otherImages?.length>=2" [disabled]="!enableCarouselButtons" (click)="right()"><i class="fa fa-arrow-right"></i></button>
+                    <!-- <i class="arrow right" *ngIf="this.imageDetails?.specification?.otherImages?.length>=2" [disabled]="!enableCarouselButtons" (click)="right()"></i> -->
+                    
+
+                </div>    
+                <!-- <a  class="arrow down">Down</a> -->
+                  
+                       
                 <!-- <button (click)="right()" [disabled]="!enableCarouselButtons">&gt;</button> -->
             </div>
                 <!-- <h1 class="title">This is our great company.</h1>
@@ -128,8 +139,7 @@
             <div class="grid-item">
                 <div class="grid-container-fourth">
                     <div class="grid-item-fourth">Phone <br> +91 99828281828</div>
-                    <div class="grid-item-fourth">Email
-                        <br> test@gmail.com</div>
+                    <div class="grid-item-fourth">Email <br> test@gmail.com</div>
                     <div class="grid-item-fourth">Location <br> some address</div>
                     
                   </div>

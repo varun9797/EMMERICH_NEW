@@ -145,6 +145,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
         .to([moveToSideAvatar], {
           ...this.inactiveProperties,
           duration: 1,
+          
           ease: Sine.easeInOut,
           x: moveToSideDirection + '100%'
         }).to([moveAcrossBackAvatar], {
@@ -165,11 +166,6 @@ export class LandingComponent implements OnInit, AfterViewInit {
           this.enableCarouselButtons = true;
           this.currentAvatarIndex = nextAvatarIndex;
         });
-      
-  
-
-
-        
     }
   
 
