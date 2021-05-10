@@ -2,7 +2,7 @@
     <div class="page-header page-header-small">
         <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/header.png');">
         </div>
-        <div class="container">
+        <!-- <div class="container">
             <div class="content-center">
                 <div class="page">
                     <div class="carousel-and-buttons">
@@ -11,7 +11,6 @@
                         
 
                         <button style="opacity: 0.9;" *ngIf="this.imageDetails?.specification?.otherImages?.length>=2" (click)="left()" [disabled]="!enableCarouselButtons">  <i class="fa fa-arrow-left"></i></button>
-                        <!-- <div style="margin: 1px;"></div> -->
                     <div class="carousel">
                         <div  #carouselItem>
                             <img class="avatar-img" [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.fileName"/>
@@ -27,30 +26,31 @@
                     </div>
                     
                     
-                    <!-- <div style="margin: 10px;"></div> -->
                     <button style="opacity: 0.9;" *ngIf="this.imageDetails?.specification?.otherImages?.length>=2" [disabled]="!enableCarouselButtons" (click)="right()"><i class="fa fa-arrow-right"></i></button>
-                    <!-- <i class="arrow right" *ngIf="this.imageDetails?.specification?.otherImages?.length>=2" [disabled]="!enableCarouselButtons" (click)="right()"></i> -->
                     
 
                 </div>    
-                <!-- <a  class="arrow down">Down</a> -->
-                  
-                       
-                <!-- <button (click)="right()" [disabled]="!enableCarouselButtons">&gt;</button> -->
+
             </div>
-                <!-- <h1 class="title">This is our great company.</h1>
-                <div class="text-center">
-                  <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                    <i class="fab fa-facebook-square"></i>
-                  </a>
-                  <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                    <i class="fab fa-twitter"></i>
-                  </a>
-                  <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-                    <i class="fab fa-google-plus"></i>
-                  </a>
-                </div> -->
+
             </div>
+        </div> -->
+        <div class="container">
+            <input type="radio" name="slider" id="item-1" checked>
+            <input type="radio" name="slider" id="item-2">
+            <input type="radio" name="slider" id="item-3">
+          <div class="cards">
+            <label class="card" for="item-1" id="song-1">
+              <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.fileName" alt="song">
+            </label>
+            <label class="card" for="item-2" id="song-2">
+              <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.specification?.otherImages[0]?.fileName" alt="song">
+            </label>
+            <label class="card" for="item-3" id="song-3">
+              <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.specification?.otherImages[1]?.fileName" alt="song">
+            </label>
+          </div>
+         
         </div>
     </div>
     <!-- <div class="page-header clear-filter" >
@@ -108,13 +108,13 @@
             <p class="description">Your project is very important to us.</p> -->
             <div class="grid-item">
                 <div class="grid-container-second">
-                    <div class="grid-item">FINISH <br> {{imageDetails?.specification?.finish}}</div>
+                    <div class="grid-item">FINISH <br> <b>{{imageDetails?.specification?.finish}}</b></div>
                     <div class="grid-item">MOTOR POWER
-                        <br> {{imageDetails?.specification?.motorpower}}</div>
-                    <div class="grid-item">LIGHT <br> {{imageDetails?.specification?.light}}</div>
-                    <div class="grid-item">SPECIAL FEATURE <br> {{imageDetails?.specification?.switch}}</div>
-                    <div class="grid-item">SWITCH <br> {{imageDetails?.specification?.switch}}</div>
-                    <div class="grid-item">WARRANTY <br> {{imageDetails?.specification?.warranty}}</div>
+                        <br> <b>{{imageDetails?.specification?.motorpower}}</b> </div>
+                    <div class="grid-item">LIGHT <br> <b>{{imageDetails?.specification?.light}}</b> </div>
+                    <div class="grid-item">SPECIAL FEATURE <br> <b>{{imageDetails?.specification?.switch}}</b> </div>
+                    <div class="grid-item">SWITCH <br> <b>{{imageDetails?.specification?.switch}}</b></div>
+                    <div class="grid-item">WARRANTY <br><b>{{imageDetails?.specification?.warranty}}</b> </div>
                   </div>
             </div>
         </div>
@@ -126,21 +126,21 @@
             <p class="description">Your project is very important to us.</p> -->
             <div class="grid-item">
                 <div class="grid-container-third">
-                    <div class="grid-item">SIZE (CM) <br> {{imageDetails?.specification?.size}}</div>
+                    <div class="grid-item">SIZE (CM) <br><b>{{imageDetails?.specification?.size}}</b> </div>
                     <div class="grid-item">SUCTION (M³/HR)
-                        <br> {{imageDetails?.specification?.suction}}</div>
-                    <div class="grid-item">FILTER <br> {{imageDetails?.specification?.light}}</div>
-                    <div class="grid-item">CHIMNEY HEIGHT <br> {{imageDetails?.specification?.height}}</div>
-                    <div class="grid-item">COLOR <br> {{imageDetails?.specification?.color}}</div>
-                    <div class="grid-item">HOUSING <br> {{imageDetails?.specification?.housing}}</div>
+                        <br> <b>{{imageDetails?.specification?.suction}}</b></div>
+                    <div class="grid-item">FILTER <br><b>{{imageDetails?.specification?.light}}</b> </div>
+                    <div class="grid-item">CHIMNEY HEIGHT <br><b>{{imageDetails?.specification?.height}}</b> </div>
+                    <div class="grid-item">COLOR <br><b>{{imageDetails?.specification?.color}}</b> </div>
+                    <div class="grid-item">HOUSING <br><b>{{imageDetails?.specification?.housing}}</b> </div>
                   </div>
             </div>
 
             <div class="grid-item">
                 <div class="grid-container-fourth">
-                    <div class="grid-item-fourth">Phone <br> +91 99828281828</div>
-                    <div class="grid-item-fourth">Email <br> test@gmail.com</div>
-                    <div class="grid-item-fourth">Location <br> some address</div>
+                    <div class="grid-item-fourth">Phone <br><b>+91 9999596210</b> </div>
+                    <div class="grid-item-fourth">Email <br> <b>sharmajatin21@yahoo.com</b> </div>
+                    <div class="grid-item-fourth">Location <br><b>-</b> </div>
                     
                   </div>
             </div>
