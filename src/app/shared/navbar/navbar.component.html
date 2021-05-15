@@ -23,6 +23,9 @@
             <a class="navbar-brand" [routerLink]="['/index']" placement="bottom">
               EMMERICH
             </a>
+            <a *ngIf="LandingComponent?.imageDetails?.name" style="font-size: large;" class="navbar-brand" placement="bottom">
+              >> EMMERICH
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
                 <span class="navbar-toggler-bar bar1"></span>
                 <span class="navbar-toggler-bar bar2"></span>
@@ -49,6 +52,19 @@
                         <p>Upgrade to PRO</p>
                     </a>
                 </li> -->
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['/index/CHIMNEYS']" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" >
+                    
+                    <h5 style="font-size: large; font-weight: bold;  color:black">CHIMNEYS</h5>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['/index/HOBS']" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" >
+                    
+                    <h5 style="font-size: large; font-weight: bold; color:black">HOBS</h5>
+                  </a>
+                </li>
+                
                 <li class="nav-item">
                   <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
                     <i class="fab fa-twitter"></i>

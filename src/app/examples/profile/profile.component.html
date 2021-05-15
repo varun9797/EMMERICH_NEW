@@ -9,23 +9,22 @@
                 </div>
                 <h3 class="title">Jatin Sharma</h3>
                 <!-- <p class="category">Photographer</p> -->
-                <div class="content">
-                    <div class="social-description">
+                <label  class="switch">
+                    <input type="checkbox" (click)="setType()"  id="togBtn">
+                    <div class="slider round">
+                     <!--ADDED HTML -->
+                     <span class="HOBS">HOBS</span>
+                     <span class="CHIMNEYS">CHIMNEYS</span>
+                     
+                     <!--END-->
                     </div>
-                    <div class="social-description">
-                         
-                    </div>
-                    <!-- <div class="social-description">
-                        <h2>48</h2>
-                        <p>Bookmarks</p>
-                    </div> -->
-                </div>
+                   </label>
             </div>
         </div>
     </div>
     <button (click)="addNew()" *ngIf="!isEditable">Add New</button>
 
-    <div class="section">
+    <div *ngIf="productType == 'CHIMNEYS'" class="section">
         <div *ngIf="!isEditable" class="row">
             <div class="col-3" *ngFor="let images of allImages;">
                 <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+images.fileName"  width= 200px; height= 200px;>
@@ -44,7 +43,7 @@
             <textarea type="text" [(ngModel)]="description" ></textarea>><br>
 
             <label for="lname">size:</label>
-            <input type="text"  [(ngModel)]="size" >
+            <input type="text"  [(ngModel)]="size" ><br>
             <label for="lname">suction:</label>
             <input type="text" [(ngModel)]="suction" ><br>
 
@@ -83,6 +82,85 @@
             <input type="text" [(ngModel)]="warranty" ><br>
             <label for="lname">company:</label>
             <input type="text" [(ngModel)]="company" ><br>
+
+            <label for="lname">Main File Name:</label>
+            <input  type="file" (change)="onFileSelected($event, i)"/>
+            <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+allImages?.selectedFile?.name"  width= 200px; height= 200px;>
+            <br>
+
+            <label for="lname">Other File Name 1:</label>
+            <input  type="file" (change)="onOtherFileSelected($event, 0)"/>
+            <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+otherImages[0]?.selectedFile?.name"  width= 200px; height= 200px;>
+            <br>
+            <label for="lname">Other File Name 2:</label>
+            <input  type="file" (change)="onOtherFileSelected($event, 1)"/>
+            <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+otherImages[1]?.selectedFile?.name"  width= 200px; height= 200px;>
+            <br>
+            <button (click)=onUpload(i) *ngIf="isEditable">Save</button>
+        </div> 
+    </div>
+    <div *ngIf="productType == 'HOBS'" class="section">
+        <div *ngIf="!isEditable" class="row">
+            <div class="col-3" *ngFor="let images of allImages;">
+                <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+images.fileName"  width= 200px; height= 200px;>
+                <button (click)="showForm(images)" *ngIf="!isEditable">Edit</button>
+                <button (click)="deleteFile(images)" *ngIf="!isEditable">Delete</button>
+            </div>
+        </div>
+
+        <div *ngIf="isEditable" class="container">
+            <button (click)="isEditable=!isEditable" *ngIf="isEditable">Back</button><br>
+
+            <label for="lname">name:</label>
+            <input type="text"  [(ngModel)]="name" ><br>
+            <label for="lname">description:</label>
+            <input type="text" [(ngModel)]="description" ><br>
+
+            <!-- <label for="lname">warranty:</label>
+            <input type="text" [(ngModel)]="warranty" ><br>
+            <label for="lname">company:</label>
+            <input type="text" [(ngModel)]="company" ><br> -->
+
+            <label for="fname">finish:</label>
+            <input type="text"  [(ngModel)]="finish" ><br>
+            <!-- <label for="lname">type:</label>
+            <input type="text" [(ngModel)]="type" > -->
+            <label for="lname">knob:</label>
+            <textarea type="text" [(ngModel)]="knob" ></textarea><br>
+
+            <label for="lname">burnerMaterial:</label>
+            <input type="text"  [(ngModel)]="burnerMaterial" ><br>
+            <label for="lname">burnerType:</label>
+            <input type="text" [(ngModel)]="burnerType" ><br>
+
+            <label for="lname">panSupport:</label>
+            <input type="text" [(ngModel)]="panSupport" ><br>
+            <label for="lname">warranty:</label>
+            <input type="text"  [(ngModel)]="warranty" ><br>
+
+            <label for="lname">GlassTopWidth:</label>
+            <input type="text" [(ngModel)]="GlassTopWidth" ><br>
+            <!-- <label for="lname">filter:</label>
+            <input type="text" [(ngModel)]="filter" > -->
+
+
+            <label for="lname">gasCompatibility:</label>
+            <input type="text" [(ngModel)]="gasCompatibility" ><br>
+
+            <label for="lname">ignitionSystem:</label>
+            <input type="text" [(ngModel)]="ignitionSystem" ><br>
+
+            <label for="lname">productDimensions:</label>
+            <input type="text" [(ngModel)]="productDimensions" ><br>
+            <label for="lname">cutoutDimensions:</label>
+            <input type="text" [(ngModel)]="cutoutDimensions" ><br>
+            <label for="lname">netWeight:</label>
+            <input type="text" [(ngModel)]="netWeight" ><br>
+
+            <!-- <label for="lname">switch:</label>
+            <input type="text" [(ngModel)]="switch" > -->
+
+
 
             <label for="lname">Main File Name:</label>
             <input  type="file" (change)="onFileSelected($event, i)"/>

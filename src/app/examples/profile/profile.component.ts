@@ -18,7 +18,8 @@ export class ProfileComponent implements OnInit {
   styles: any[] = [{ "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#e9e9e9" }, { "lightness": 17 }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }, { "lightness": 17 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#ffffff" }, { "lightness": 29 }, { "weight": 0.2 }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 18 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 16 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 21 }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#dedede" }, { "lightness": 21 }] }, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "lightness": 16 }] }, { "elementType": "labels.text.fill", "stylers": [{ "saturation": 36 }, { "color": "#333333" }, { "lightness": 40 }] }, { "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#f2f2f2" }, { "lightness": 19 }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#fefefe" }, { "lightness": 20 }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 }] }];
   data: Date = new Date();
 
-  allImages: any;
+  allImages: any=[];
+  productType: any="HOBS";
 
   type: any;
   name: any;
@@ -31,16 +32,29 @@ export class ProfileComponent implements OnInit {
   switch: any;
   motorpower: any;
   productdimension: any;
-  warranty: any;
+  
   isEditable: any;
   company: any;
   id: any;
   specialfeature: any;
   filter: any;
-  finish: any;
   light: any;
   otherImages = [];
 
+/*************************** */
+  finish: any;
+  knob:any;
+  burnerMaterial: any
+  burnerType:any;
+  panSupport:any;
+  warranty: any;
+
+  GlassTopWidth: any;
+  gasCompatibility:any;
+  ignitionSystem: any;
+  cutoutDimensions: any;
+  productDimensions:any;
+  netWeight:any;
 
   constructor(private http: HttpClient) { }
 
@@ -51,7 +65,7 @@ export class ProfileComponent implements OnInit {
     body.classList.add('profile-page');
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
-    this.getAllImages();
+    this.getAllImages(this.productType);
   }
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
@@ -60,10 +74,12 @@ export class ProfileComponent implements OnInit {
     navbar.classList.remove('navbar-transparent');
   }
 
-  async getAllImages() {
-    this.allImages = await this.http.get('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getImages').toPromise();
+  async getAllImages(productType) {
+    this.allImages = await this.http.get('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getImages?productType='+productType).toPromise();
     //console.log("*******",allImages)
-
+    if(!this.allImages){
+      this.allImages = {}
+    }
   }
 
   onFileSelected(event: any, index) {
@@ -77,28 +93,52 @@ export class ProfileComponent implements OnInit {
   async onUpload(index) {
 
     console.log('1. SelectedFile: ', this.allImages.selectedFile);
-    const body = {
+    const body:any = {
       id: this.id,
       fileName: this.allImages.selectedFile.name,
       type: this.allImages.selectedFile.type,
       name: this.name,
       description: this.description,
-      size: this.size,
-      suction: this.suction,
-      height: this.height,
-      color: this.color,
-      housing: this.housing,
-      switch: this.switch,
-      motorpower: this.motorpower,
-      productdimension: this.productdimension,
-      warranty: this.warranty,
+
+      
+      
       company: this.company,
-      specialfeature: this.specialfeature,
-      filter: this.filter,
-      finish: this.finish,
-      light: this.light,
+      productType: this.productType,
       otherImages: []
     }
+
+    if(this.productType == "CHIMNEYS"){
+      body.size= this.size,
+      body.suction= this.suction,
+      body.filter= this.filter,
+      body.height= this.height,
+      body.color= this.color,
+      body.housing= this.housing,
+
+      body.finish= this.finish,
+      body.motorpower= this.motorpower,
+      body.light= this.light,
+      body.specialfeature= this.specialfeature,
+      body.switch= this.switch,
+      body.warranty= this.warranty
+    }
+
+    if(this.productType == "HOBS"){
+      body.finish= this.finish,
+      body.knob= this.knob,
+      body.burnerMaterial= this.burnerMaterial,
+      body.burnerType= this.burnerType,
+      body.panSupport= this.panSupport,
+      body.warranty= this.warranty,
+
+      body.GlassTopWidth= this.GlassTopWidth,
+      body.gasCompatibility= this.gasCompatibility,
+      body.ignitionSystem= this.ignitionSystem,
+      body.cutoutDimensions= this.cutoutDimensions,
+      body.productDimensions= this.productDimensions,
+      body.netWeight= this.netWeight
+    }
+
     if (this.otherImages[0] && this.otherImages[0].selectedFile) {
       body.otherImages[0] = { fileName: this.otherImages[0].selectedFile.name, fileType: this.otherImages[0].selectedFile.type }
       await this.getImageUrl("https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getPreSignedURLforImages",
@@ -115,7 +155,7 @@ export class ProfileComponent implements OnInit {
     upload.then(data => {
       console.log('=> ', data)
       this.isEditable = !this.isEditable
-      this.getAllImages();
+      this.getAllImages(this.productType);
     }).catch(err => console.log('error: ', err))
   }
 
@@ -201,6 +241,17 @@ export class ProfileComponent implements OnInit {
   }
   async deleteFile(imageDetails){
      await this.http.post("https://cosmo-thoughts.herokuapp.com/api/auth/userlist/deleteimage", {id:imageDetails._id}).toPromise();
-     this.getAllImages();
+     this.getAllImages(this.productType);
+    }
+
+    setType(event){
+      
+      if(this.productType == "CHIMNEYS"){
+        this.productType = "HOBS"
+      } else {
+        this.productType = "CHIMNEYS"
+      }
+      console.log("***this.productType**",this.productType);
+      this.getAllImages(this.productType);
     }
 }

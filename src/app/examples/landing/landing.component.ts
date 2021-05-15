@@ -20,7 +20,7 @@ export class LandingComponent implements OnInit {
   focus;
   focus1;
   // Sine: gsap.Ease
-  imageDetails:any;
+  public imageDetails:any;
 
   @ViewChildren('carouselItem')
   private carouselItems : QueryList<ElementRef>;

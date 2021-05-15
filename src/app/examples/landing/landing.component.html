@@ -35,7 +35,16 @@
 
             </div>
         </div> -->
+        <div>
+            <div class="content-center">.</div>
+            <div class="content-center ">.</div>
+            <div class="content-center">.</div>
+         
+          
+        </div>
+        
         <div class="container">
+        
             <input type="radio" name="slider" id="item-1" checked>
             <input type="radio" name="slider" id="item-2">
             <input type="radio" name="slider" id="item-3">
@@ -49,6 +58,7 @@
             <label class="card" for="item-3" id="song-3">
               <img [src]="'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+imageDetails?.specification?.otherImages[1]?.fileName" alt="song">
             </label>
+           
           </div>
          
         </div>
@@ -75,7 +85,7 @@
           </div>
       </div>
     </div> -->
-    <div class=" section-team text-center">
+    <!-- <div class=" section-team text-center"> -->
         <!-- <div class="page">
             <div class="carousel-and-buttons">
                 <button (click)="left()" [disabled]="!enableCarouselButtons">&lt;</button>
@@ -101,13 +111,18 @@
             </div>
             <button (click)="right()">&gt;</button>
           </div> -->
-    </div>
+    <!-- </div> -->
+   
     <div class="section section-contact-us text-center">
+        <div style="padding: 5px; font-size: x-large; font-weight: bold;">
+           {{imageDetails.name}}
+        </div>
         <div class="container">
             <!-- <h2 class="title">Want to work with us?</h2>
             <p class="description">Your project is very important to us.</p> -->
+
             <div class="grid-item">
-                <div class="grid-container-second">
+                <div *ngIf="imageDetails?.productType == 'CHIMNEYS'" class="grid-container-second">
                     <div class="grid-item">FINISH <br> <b>{{imageDetails?.specification?.finish}}</b></div>
                     <div class="grid-item">MOTOR POWER
                         <br> <b>{{imageDetails?.specification?.motorpower}}</b> </div>
@@ -116,16 +131,25 @@
                     <div class="grid-item">SWITCH <br> <b>{{imageDetails?.specification?.switch}}</b></div>
                     <div class="grid-item">WARRANTY <br><b>{{imageDetails?.specification?.warranty}}</b> </div>
                   </div>
+                <div *ngIf="imageDetails?.productType == 'HOBS'" class="grid-container-second">
+                    <div class="grid-item">FINISH <br> <b>{{imageDetails?.specification?.finish}}</b></div>
+                    <div class="grid-item">KNOB
+                        <br> <b>{{imageDetails?.specification?.knob}}</b> </div>
+                    <div class="grid-item">BURNER MATERIAL <br> <b>{{imageDetails?.specification?.burnerMaterial}}</b> </div>
+                    <div class="grid-item">BURNER TYPE <br> <b>{{imageDetails?.specification?.burnerType}}</b> </div>
+                    <div class="grid-item">PAN SUPPORT <br> <b>{{imageDetails?.specification?.panSupport}}</b></div>
+                    <div class="grid-item">WARRANTY <br><b>{{imageDetails?.specification?.warranty}}</b> </div>
+                  </div>
             </div>
         </div>
     </div>
 
-    <div class="section section-contact-us text-center">
+    <div class=" text-center">
         <div class="container">
             <!-- <h2 class="title">Want to work with us?</h2>
             <p class="description">Your project is very important to us.</p> -->
             <div class="grid-item">
-                <div class="grid-container-third">
+                <div *ngIf="imageDetails?.productType == 'CHIMNEYS'" class="grid-container-third">
                     <div class="grid-item">SIZE (CM) <br><b>{{imageDetails?.specification?.size}}</b> </div>
                     <div class="grid-item">SUCTION (M³/HR)
                         <br> <b>{{imageDetails?.specification?.suction}}</b></div>
@@ -134,7 +158,17 @@
                     <div class="grid-item">COLOR <br><b>{{imageDetails?.specification?.color}}</b> </div>
                     <div class="grid-item">HOUSING <br><b>{{imageDetails?.specification?.housing}}</b> </div>
                   </div>
+                  <div *ngIf="imageDetails?.productType == 'HOBS'"  class="grid-container-third">
+                    <div class="grid-item">GAS TOP WIDTH <br><b>{{imageDetails?.specification?.GlassTopWidth}}</b> </div>
+                    <div class="grid-item">GAS COMPATIBILITY
+                        <br> <b>{{imageDetails?.specification?.gasCompatibility}}</b></div>
+                    <div class="grid-item">IGNITION SYSTEM <br><b>{{imageDetails?.specification?.ignitionSystem}}</b> </div>
+                    <div class="grid-item">CUTOUT DIMENSIONS<br><b>{{imageDetails?.specification?.cutoutDimensions}}</b> </div>
+                    <div class="grid-item">PRODUCT DIMENSIONS <br><b>{{imageDetails?.specification?.productDimensions}}</b> </div>
+                    <div class="grid-item">NET WEIGHT <br><b>{{imageDetails?.specification?.netWeight}}</b> </div>
+                  </div>
             </div>
+            
 
             <div class="grid-item">
                 <div class="grid-container-fourth">
@@ -145,8 +179,11 @@
                   </div>
             </div>
         </div>
+        <div></div>
+       
     </div>
-
+    <div class="container"> <h3><b>Product Description</b></h3><h5>{{imageDetails?.description}}</h5></div>
+   
     <div class="row">
         <div class="col-md-4 content-center ml-auto mr-auto">
             <div class="">

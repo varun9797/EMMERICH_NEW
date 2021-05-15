@@ -1,5 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import {LandingComponent} from "./../../examples/landing/landing.component"
 
 @Component({
     selector: 'app-navbar',
@@ -9,15 +12,26 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
+    private LandingComponent: LandingComponent 
 
-    constructor(public location: Location, private element : ElementRef) {
+    constructor(public location: Location, private element : ElementRef, private activatedRoute:ActivatedRoute, private http:HttpClient) {
         this.sidebarVisible = false;
     }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        // this.activatedRoute.params.subscribe(params => {
+        //     let id = params['id'];
+        //     this.getImageDetails(id)
+        // });
     }
+    // async getImageDetails(id) {
+    //     this.imageDetails = await this.http.get('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getImages?id='+id).toPromise();  
+    //     // console.log(this.imageDetails);
+    //     // this.images.push({"path":'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+this.imageDetails.fileName})
+    //    }
+    
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -12,21 +12,25 @@ import { Router } from '@angular/router';
 })
 export class TypographyComponent implements OnInit {
   allImages: any;
+  productType:string;
 
 
   ngOnInit() {
-    this.getAllS3Files();
+    this.activatedRoute.params.subscribe(params => {
+      this.productType = params['type'];
+      this.getAllS3Files(this.productType)
+  });
   }
 
   selectedFile: File = null;  
-  constructor(private http: HttpClient, private router: Router ) {}
+  constructor(private http: HttpClient, private router: Router, private activatedRoute:ActivatedRoute ) {}
  
   onFileSelected(event:any){
     this.selectedFile = <File> event.target.files[0]; 
   }
 
-  async getAllS3Files(){
-    this.allImages = await this.http.get('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getImages').toPromise();  
+  async getAllS3Files(productType){
+    this.allImages = await this.http.get('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getImages?productType='+productType).toPromise();  
   }
  
   async onUpload() {   
