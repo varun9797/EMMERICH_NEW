@@ -32,6 +32,15 @@ import { Router, ActivatedRoute } from '@angular/router';
         font-size: 20px;
         text-align: center;
       }
+      @media only screen and (max-width: 600px) {
+        .grid-container-fourth{
+            display: grid;
+            grid-template-columns: auto ;
+            background-color: #8fb3ca;
+            
+          }
+      }
+
     `]
 })
 
