@@ -3,7 +3,7 @@ import * as Rellax from 'rellax';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {Component, ElementRef, QueryList, ViewChildren, OnInit, AfterViewInit} from '@angular/core';
-import { gsap, Sine } from 'gsap';
+
 
 enum Direction {
   Left = '-=',

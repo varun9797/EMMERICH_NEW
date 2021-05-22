@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
 
   allImages: any=[];
   productType: any="HOBS";
+  token:string;
 
   type: any;
   name: any;
@@ -59,6 +60,9 @@ export class ProfileComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+
+    this.token = localStorage.getItem('emmerichtoken');
+
     var rellaxHeader = new Rellax('.rellax-header');
 
     var body = document.getElementsByTagName('body')[0];
@@ -91,7 +95,7 @@ export class ProfileComponent implements OnInit {
     this.otherImages[index].selectedFile = <File>event.target.files[0];
   }
   async onUpload(index) {
-
+    try {
     console.log('1. SelectedFile: ', this.allImages.selectedFile);
     const body:any = {
       id: this.id,
@@ -157,6 +161,9 @@ export class ProfileComponent implements OnInit {
       this.isEditable = !this.isEditable
       this.getAllImages(this.productType);
     }).catch(err => console.log('error: ', err))
+  } catch(err){
+    console.log(err);
+  }
   }
 
   deleteEmployee(index) {
@@ -165,6 +172,7 @@ export class ProfileComponent implements OnInit {
   }
 
   async getImageUrl(url, images, body) {
+    body.token=this.token;
     let preSignedUrlBody: any = await this.http.post(url, body).toPromise();
     const upload = await this.http.put(preSignedUrlBody.preSignedUrl, images.selectedFile).toPromise();
     return upload;
@@ -240,7 +248,7 @@ export class ProfileComponent implements OnInit {
 
   }
   async deleteFile(imageDetails){
-     await this.http.post("https://cosmo-thoughts.herokuapp.com/api/auth/userlist/deleteimage", {id:imageDetails._id}).toPromise();
+     await this.http.post("https://cosmo-thoughts.herokuapp.com/api/auth/userlist/deleteimage", {id:imageDetails._id, token:this.token }).toPromise();
      this.getAllImages(this.productType);
     }
 
