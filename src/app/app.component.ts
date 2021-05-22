@@ -15,13 +15,14 @@ export class AppComponent implements OnInit {
     private _router: Subscription;
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
 
-    constructor( private renderer : Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location) {}
+    constructor(private renderer: Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element: ElementRef, public location: Location) { }
     ngOnInit() {
-        var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];
+        var navbar: HTMLElement = this.element.nativeElement.children[0].children[0];
+        navbar.classList.remove('navbar-transparent');
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
             if (window.outerWidth > 991) {
                 window.document.children[0].scrollTop = 0;
-            }else{
+            } else {
                 window.document.activeElement.scrollTop = 0;
             }
             this.navbar.sidebarClose();
@@ -30,13 +31,20 @@ export class AppComponent implements OnInit {
                 const number = window.scrollY;
                 var _location = this.location.path();
                 _location = _location.split('/')[2];
+                const ua = navigator.userAgent;
 
-                if (number > 150 || window.pageYOffset > 150) {
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua)) {
                     navbar.classList.remove('navbar-transparent');
-                } else if (_location !== 'login' && this.location.path() !== '/nucleoicons') {
-                    // remove logic
-                    navbar.classList.add('navbar-transparent');
+                } else if (/Chrome/i.test(ua)) {
+                    if (number > 150 || window.pageYOffset > 150) {
+                        navbar.classList.remove('navbar-transparent');
+                    } else if (_location !== 'login' && this.location.path() !== '/nucleoicons') {
+                        // remove logic
+                        navbar.classList.add('navbar-transparent');
+                    }
                 }
+
+                
             });
         });
     }

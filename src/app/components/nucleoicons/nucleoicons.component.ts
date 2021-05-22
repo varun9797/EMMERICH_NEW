@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 export class NucleoiconsComponent implements OnInit, OnDestroy {
     imglink=null;
     imagName=null
+    imgName;
 
     constructor( private element : ElementRef, private activatedRoute: ActivatedRoute) {}
 

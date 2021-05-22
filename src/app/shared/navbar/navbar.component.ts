@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { Location} from '@angular/common';
+
 import {LandingComponent} from "./../../examples/landing/landing.component"
 
 @Component({
@@ -14,7 +13,7 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     private LandingComponent: LandingComponent 
 
-    constructor(public location: Location, private element : ElementRef, private activatedRoute:ActivatedRoute, private http:HttpClient) {
+    constructor(public location: Location, private element : ElementRef) {
         this.sidebarVisible = false;
     }
 
