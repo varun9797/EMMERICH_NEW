@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     styleUrls: ['./typography.component.scss']
 })
 export class TypographyComponent implements OnInit {
-  allImages: any;
+  allImages: any =[];
   productType:string;
 
 

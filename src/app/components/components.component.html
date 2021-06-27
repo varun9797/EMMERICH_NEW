@@ -10,6 +10,7 @@
               <h3>Home Appliances</h3>
               <h5><b>{{productType}}</b></h5>
           </div>
+         
           <!-- <h6 class="category category-absolute">Designed by
               <a href="https://invisionapp.com/" target="_blank">
                   <img src="assets/img/invision-white-slim.png" class="invision-logo" />
@@ -199,26 +200,9 @@
       </div> -->
       <app-typography></app-typography>
       <div class="section section-javascript" id="javascriptComponents">
+        
      </div>
-     <div class=" text-center">
-        <div class="container">
-            <!-- <h2 class="title">Want to work with us?</h2>
-            <p class="description">Your project is very important to us.</p> -->
-           
-            
 
-            <div class="grid-item">
-                <div class="grid-container-fourth">
-                    <div class="grid-item-fourth">Phone <br><b>+91 9999596210</b> </div>
-                    <div class="grid-item-fourth">Email <br> <b>sharmajatin21@yahoo.com</b> </div>
-                    <div class="grid-item-fourth">Location <br><b>-</b> </div>
-                    
-                  </div>
-            </div>
-        </div>
-        <div></div>
-       
-    </div>
 
 
       <div class="" >
@@ -226,7 +210,7 @@
             <div class="row">
               <div class="col-md-4 content-center ml-auto mr-auto">
                   <div class="">
-                      <form class="form" method="" action="">
+                      <div class="form" method="" action="">
                           <!-- <div class="header header-primary text-center">
                               <div class="logo-container">
                                   <img src="assets/img/now-logo.png" alt="">
@@ -237,26 +221,32 @@
                               <div class="input-group-prepend">
                                   <span class="input-group-text"> Name </span>
                               </div>
-                                <input type="text" class="form-control" placeholder="Name..." (focus)="focus=true" (blur)="focus=false" >
+                                <input type="text" name="name" class="form-control" placeholder="Name..." [(ngModel)]="name" (focus)="focus=true" (blur)="focus=false" >
                             </div>
                             <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> Phone Number </span>
                                 </div>
-                                  <input type="number" class="form-control" placeholder="Name..." (focus)="focus=true" (blur)="focus=false" >
+                                  <input type="number" name="phonenum" class="form-control" placeholder="Phone Number" [(ngModel)]="phoneNum" (focus)="focus=true" (blur)="focus=false" >
+                              </div>
+                              <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> Email </span>
+                                </div>
+                                  <input type="text" name="email" class="form-control" placeholder="Email" [(ngModel)]="email" (focus)="focus=true" (blur)="focus=false" >
                               </div>
                             <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
                               <div class="input-group-prepend">
                                   <span class="input-group-text">Message</span>
                               </div>
-                                <textarea type="text" placeholder="Last Name..." class="form-control" (focus)="focus1=true" (blur)="focus1=false"></textarea>
+                                <textarea type="text" name="msg"  placeholder="Last Name..." [(ngModel)]="msg" class="form-control" (focus)="focus1=true" (blur)="focus1=false"></textarea>
                             </div>
                           </div>
                           <div class="footer text-center">
-                              <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block">Submit</a>
+                              <a type="button" (click)="submitEnq()" class="btn btn-primary btn-round btn-lg btn-block">Submit</a>
                           </div>
                          
-                      </form>
+                      </div>
                   </div>
               </div>
             </div>
@@ -265,6 +255,39 @@
               </div> -->
           </div>
       </div>
+      <div class=" text-center">
+        <div class="container">
+          <div class="grid-item">
+            <div class="grid-container-fourth">
+                <div class="grid-item-fourth">Phone <br><b>+91 9999596210</b> </div>
+                <div class="grid-item-fourth">Email <br> <b>sharmajatin21@yahoo.com</b> </div>
+                <div class="grid-item-fourth">Location <br><b>-</b> </div>
+                
+              </div>
+        </div>
+          <h2 class="title">WHY EMMERICH</h2>
+            <p style="color: black;" class="description">Kitchen is the hub of most homes, regardless of family or individual circumstances. The kitchen has become a social area, and modern living spaces tend to be an integration of eating, relaxation and cooking spaces.
+
+              Kitchen design is about finding the products and fittings which suit your taste and requirements, arranging them in a way which will allow you to work easily and safely, and of course providing a good looking feature within your home. This needs to be achieved within your financial limits and emmerich offers you all . We believe in providing a real asset to your home and your life style .
+              
+              Emmerich Germany is a label that means trust and quality.Serving since 2012,we have successfully made a huge family of loyal customers all over India and a vital existence on E-commerce platforms in a very short span of time. We are the experts to rely on when you need to give your kitchen the perfect makeover. From our wide range of exquisite cook tops to kitchen chimneys, we are a family who believes in delivering nothing but the best. Our aim is to get the best in class products out there for people to buy and we do this affordably, keeping your wallet safe! Our international quality, design and standards make us the best in the craft.
+              
+              
+              Our wide range of Chimneys, hobs and cook tops offer the unique advantage to choose as per your needs! We have kept style and substance in perfect harmony giving your kitchen a style on its own, without compromising any functionality.
+              
+              We know how important it is for the kitchen to look good and how everyone wishes it to be! So now with Seavy products you can rely on us to get your kitchen that international look that might get it a Michelin Star on its own!
+              
+              
+              And that’s not all Customer Satisfaction is our priority. We firmly abide by the saying “Make a customer, not sale”
+              
+              Emmerich offers complete satisfaction to its customers with excellent product quality and an exemplary level of customer service. We provide Pan India service at your doorstep and assistance for all customer enquiries within 48 hours.
+              
+              So if you are thinking to give your kitchen that perfect makeover with a touch of elegance, make a wise decision and choose Emmerich !</p> 
+
+        </div>
+        <div></div>
+       
+    </div>
       <!-- <div class="section section-examples" data-background-color="black">
           <div class="space-50"></div>
           <div class="container text-center">

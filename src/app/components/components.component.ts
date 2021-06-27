@@ -3,6 +3,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 import * as Rellax from 'rellax';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-components',
@@ -63,8 +64,12 @@ export class ComponentsComponent implements OnInit, OnDestroy {
     public isCollapsed2 = true;
 
     state_icon_primary = true;
+    name;
+    phoneNum;
+    msg;
+    email;
 
-    constructor( private renderer : Renderer2, config: NgbAccordionConfig, private activatedRoute:ActivatedRoute) {
+    constructor( private renderer : Renderer2, config: NgbAccordionConfig, private activatedRoute:ActivatedRoute, private http: HttpClient) {
         config.closeOthers = true;
         config.type = 'info';
     }
@@ -79,7 +84,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
       var rellaxHeader = new Rellax('.rellax-header');
-
+      this.productType = this.activatedRoute.snapshot.params["type"];
       const ua = navigator.userAgent;
                 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua)) {
                     navbar.classList.remove('navbar-transparent');
@@ -100,5 +105,23 @@ export class ComponentsComponent implements OnInit, OnDestroy {
         navbar.classList.remove('navbar-transparent');
         var body = document.getElementsByTagName('body')[0];
         body.classList.remove('index-page');
+    }
+
+    async submitEnq(){
+      try {
+        const body = { "name": this.name || "",
+        "email": this.email,
+        "phoneno": this.phoneNum,
+        "description": this.msg,
+        "status":1
+      }
+        let preSignedUrlBody:any = await this.http.post('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/addEmmerichEnq', body).toPromise();  
+        alert("Submitted Successfully!")
+
+      } catch(err) {
+        console.log(err);
+        alert("something went wrong!")
+      }
+      
     }
 }
