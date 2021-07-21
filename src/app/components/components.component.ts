@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 import * as Rellax from 'rellax';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -41,6 +41,29 @@ import { HttpClient } from '@angular/common/http';
             
           }
       }
+      a { color: white; text-decoration: none; }
+
+.arrow {
+  text-align: center;
+  margin: 20% 0px 0px 0px
+}
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
 
     `]
 })
@@ -69,9 +92,14 @@ export class ComponentsComponent implements OnInit, OnDestroy {
     msg;
     email;
 
-    constructor( private renderer : Renderer2, config: NgbAccordionConfig, private activatedRoute:ActivatedRoute, private http: HttpClient) {
+    constructor(public router:Router, private renderer : Renderer2, config: NgbAccordionConfig, private activatedRoute:ActivatedRoute, private http: HttpClient) {
         config.closeOthers = true;
         config.type = 'info';
+        this.router.events.subscribe(event => {
+          if(event instanceof NavigationEnd) {
+            this.productType = event.url.split("/")[2];
+          }
+        });
     }
     isWeekend(date: NgbDateStruct) {
         const d = new Date(date.year, date.month - 1, date.day);
@@ -95,10 +123,6 @@ export class ComponentsComponent implements OnInit, OnDestroy {
   
         var body = document.getElementsByTagName('body')[0];
         body.classList.add('index-page');
-
-        this.activatedRoute.params.subscribe(params => {
-            this.productType = params['type'];
-        });
     }
     ngOnDestroy(){
         var navbar = document.getElementsByTagName('nav')[0];

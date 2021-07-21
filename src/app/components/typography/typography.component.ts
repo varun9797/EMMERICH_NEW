@@ -23,14 +23,26 @@ export class TypographyComponent implements OnInit {
   }
 
   selectedFile: File = null;  
-  constructor(private http: HttpClient, private router: Router, private activatedRoute:ActivatedRoute ) {}
+  constructor(private http: HttpClient, private router: Router, private activatedRoute:ActivatedRoute ) {
+  }
  
   onFileSelected(event:any){
     this.selectedFile = <File> event.target.files[0]; 
   }
 
   async getAllS3Files(productType){
-    this.allImages = await this.http.get('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getImages?productType='+productType).toPromise();  
+    if(productType == "CHIMNEYS") {
+      this.http.get("./assets/config/chimneys.json")
+      .subscribe((res:any) => {
+        this.allImages = res;
+      } )
+      
+    } else if(productType == "HOBS") {
+      this.http.get("./assets/config/hobs.json")
+      .subscribe((res:any) => {
+        this.allImages = res;
+      } )
+    }
   }
  
   async onUpload() {   

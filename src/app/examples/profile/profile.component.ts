@@ -22,6 +22,9 @@ export class ProfileComponent implements OnInit {
   productType: any="HOBS";
   token:string;
 
+  showEnquiryList: boolean=false;
+  enquiryList:any=[];
+  enquiryCount;
   type: any;
   name: any;
   description: any;
@@ -70,7 +73,14 @@ export class ProfileComponent implements OnInit {
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
     this.getAllImages(this.productType);
+    this.getEnquieryList();
   }
+async getEnquieryList(){
+  let data:any = await this.http.get('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/EmmerichEnqList').toPromise();
+  this.enquiryCount = data.count;
+  this.enquiryList =  data.data;
+}
+
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
     body.classList.remove('profile-page');

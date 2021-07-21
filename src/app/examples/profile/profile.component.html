@@ -22,8 +22,10 @@
             </div>
         </div>
     </div>
-    <button (click)="addNew()" *ngIf="!isEditable">Add New</button>
+    <button (click)="addNew()" *ngIf="!isEditable && !showEnquiryList">Add New</button>
+    <button (click)="showEnquiryList = !showEnquiryList" *ngIf="!isEditable ">Show/Hide Enquiry</button>
 
+<div *ngIf="!showEnquiryList">
     <div *ngIf="productType == 'CHIMNEYS'" class="section">
         <div *ngIf="!isEditable" class="row">
             <div class="col-3" *ngFor="let images of allImages;">
@@ -178,6 +180,23 @@
             <button (click)=onUpload(i) *ngIf="isEditable">Save</button>
         </div> 
     </div>
+</div>
+<div *ngIf="showEnquiryList">
+<table>
+        <!-- <tr><td><h2>{{group.name}}</h2></td></tr> -->
+        <tr *ngFor="let enq of enquiryList">
+            <td>{{enq.name}}</td>
+            <td>{{enq.email}}</td>
+            <td>{{enq.phoneno}}</td>
+            <td>{{enq.description}}</td>
+            <td>{{enq.status}}</td>
+            <td>{{enq.createdAt | date : 'dd-MM-yyyy HH:mm:ss'}}</td>
+            <td>{{enq.updatedAt | date : 'dd-MM-yyyy HH:mm:ss'}}</td>
+
+        </tr>
+   
+</table>
+</div>
     <footer class="footer footer-default">
         <div class="container">
             <nav>
