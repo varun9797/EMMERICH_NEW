@@ -14,9 +14,6 @@ export class NucleoiconsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         let navbar = document.getElementsByTagName('app-navbar')[0].children[0];
-
-    //   navbar.classList.remove('navbar-transparent');
-
       this.activatedRoute.params.subscribe(params => {
           console.log(params);
           this.imagName=params['imageName']

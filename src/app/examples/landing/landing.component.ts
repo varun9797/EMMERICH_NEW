@@ -35,7 +35,29 @@ export class LandingComponent implements OnInit {
    }
 
    async getImageDetails(id) {
-    this.imageDetails = await this.http.get('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getImages?id='+id).toPromise();  
+
+    this.http.get("./assets/config/chimneys.json")
+    .subscribe((res:any) => {
+      res.forEach((el)=>{
+        if(el._id == id) {
+          this.imageDetails = el;
+        }
+      })
+    } )
+
+    if(!this.imageDetails) {
+      this.http.get("./assets/config/hobs.json")
+      .subscribe((res:any) => {
+        res.forEach((el)=>{
+          if(el._id == id) {
+            this.imageDetails = el;
+          }
+        })
+      } )
+    }
+    
+    
+    // this.imageDetails = await this.http.get('https://cosmo-thoughts.herokuapp.com/api/auth/userlist/getImages?id='+id).toPromise();  
     // console.log(this.imageDetails);
     // this.images.push({"path":'https://emmerich-images.s3.ap-south-1.amazonaws.com/'+this.imageDetails.fileName})
    }
