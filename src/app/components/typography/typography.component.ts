@@ -44,6 +44,15 @@ export class TypographyComponent implements OnInit {
       } )
     }
   }
+
+
+  toggleIndex(){
+    if(this.productType == 'CHIMNEYS') {
+      this.router.navigate(['/index/HOBS']);
+    } else if (this.productType == 'HOBS') {
+      this.router.navigate(['/index/CHIMNEYS']);
+    }
+  }
  
   async onUpload() {   
     console.log('1. SelectedFile: ', this.selectedFile); 

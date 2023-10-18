@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
     selector: 'app-components',
     templateUrl: './components.component.html',
     styles: [`
+
     ngb-progressbar {
         margin-top: 5rem;
     }
@@ -109,6 +110,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
     isDisabled(date: NgbDateStruct, current: {month: number}) {
         return date.month !== current.month;
     }
+
 
     ngOnInit() {
       var rellaxHeader = new Rellax('.rellax-header');
